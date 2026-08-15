@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.mp4
+*.wav
+*.ass
+*.srt
+*.json
+outputs/
+uploads/
+*.txt

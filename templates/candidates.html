@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Video Clipper</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px 15px;
+            background: #0f1117;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h1 {
+            margin-bottom: 8px;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            color: #888;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: #181b24;
+            border: 1px solid #2b2f3a;
+            border-radius: 18px;
+            padding: 22px;
+            margin-bottom: 18px;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .number {
+            color: #9b8cff;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .score {
+            background: #29234d;
+            color: #b9adff;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 13px;
+        }
+
+        .time {
+            color: #999;
+            margin-bottom: 14px;
+            font-size: 14px;
+        }
+
+        .text {
+            font-size: 18px;
+            line-height: 1.55;
+            color: #eee;
+        }
+
+        form {
+            margin-top: 18px;
+        }
+
+        .create-btn {
+            width: 100%;
+            padding: 13px 20px;
+            border: 0;
+            border-radius: 10px;
+            background: #6c5ce7;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .create-btn:hover {
+            background: #7d6df0;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 12px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .card {
+                padding: 18px;
+            }
+
+            .text {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🔥 Best Short Candidates</h1>
+
+<form action="/create-all" method="POST">
+    <button type="submit">
+        🚀 Create All Top 10 Shorts
+    </button>
+</form>
+
+{% for candidate in candidates %}
+
+    <div class="card">
+
+        <div class="top">
+
+            <div class="number">
+                #{{ candidate.number }}
+            </div>
+
+            <div class="score">
+                SCORE {{ candidate.score }}
+            </div>
+
+        </div>
+
+        <div class="time">
+            {{ "%.2f"|format(candidate.start) }}s
+            →
+            {{ "%.2f"|format(candidate.end) }}s
+        </div>
+
+        <div class="text">
+            {{ candidate.text }}
+        </div>
+
+        <form action="/create-short" method="POST">
+
+            <input
+                type="hidden"
+                name="start"
+                value="{{ candidate.start }}"
+            >
+
+            <input
+                type="hidden"
+                name="end"
+                value="{{ candidate.end }}"
+            >
+
+            <button
+                class="create-btn"
+                type="submit"
+            >
+                🎬 Create Short 🔥
+            </button>
+
+        </form>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

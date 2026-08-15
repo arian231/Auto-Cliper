@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>All Shorts Created</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            background: #0f1117;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(280px, 1fr)
+            );
+            gap: 20px;
+        }
+
+        .card {
+            background: #181b24;
+            border: 1px solid #2b2f3a;
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        video {
+            width: 100%;
+            max-height: 500px;
+            border-radius: 10px;
+            background: black;
+        }
+
+        .number {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .time {
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 18px;
+            background: #6c5ce7;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🔥 {{ created|length }} Shorts Created</h1>
+
+    <div class="grid">
+
+        {% for item in created %}
+
+        <div class="card">
+
+            <div class="number">
+                Short #{{ item.number }}
+            </div>
+
+            <div class="time">
+                {{ "%.2f"|format(item.start) }}s →
+                {{ "%.2f"|format(item.end) }}s
+                ·
+                {{ "%.2f"|format(item.duration) }}s
+            </div>
+
+            <video controls>
+                <source
+                    src="/outputs/{{ item.file }}"
+                    type="video/mp4"
+                >
+            </video>
+
+            <a
+                href="/outputs/{{ item.file }}"
+                download
+            >
+                Download Short
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

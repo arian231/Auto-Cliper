@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Video Clipper</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f1117;
+            color: white;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 80px auto;
+            padding: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #aeb4c0;
+            font-size: 18px;
+        }
+
+        .upload-box {
+            margin-top: 40px;
+            padding: 60px 30px;
+            border: 2px dashed #555;
+            border-radius: 20px;
+            background: #171a22;
+        }
+
+        input {
+            margin: 25px 0;
+            font-size: 16px;
+        }
+
+        button {
+            display: block;
+            margin: auto;
+            padding: 14px 35px;
+            border: none;
+            border-radius: 10px;
+            background: #6c5ce7;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #5848d6;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🎬 AI Video Clipper</h1>
+
+    <p>
+        Turn long videos into engaging Shorts automatically.
+    </p>
+
+    <div class="upload-box">
+
+        <h2>Upload your video</h2>
+
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+
+            <input
+                type="file"
+                name="video"
+                accept="video/*"
+                required
+            >
+
+            <button type="submit">
+                Generate Shorts
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
